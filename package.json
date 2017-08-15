@@ -12,5 +12,8 @@
         "fs-extra": "^4.0.1",
         "path": "^0.12.7",
         "progress-stream": "^2.0.0"
+    },
+    "devDependencies": {
+        "jumpfm-api": "^1.0.0"
     }
 }

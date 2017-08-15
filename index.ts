@@ -31,13 +31,10 @@ export const load = (jumpFm: JumpFm) => {
             length: fs.statSync(cp.fileFullPath).size,
             time: 200
         }, (prog) => {
-            jumpFm.statusBar.info('cp',
-                'cp: '
-                + path.basename(cp.fileFullPath)
-                + ' '
-                + prog.percentage.toFixed(0)
-                + '%'
-            )
+            jumpFm.statusBar.info('cp', {
+                txt: `cp ${prog.percentage.toFixed(0)}%`,
+                dataTitle: path.basename(cp.fileFullPath)
+            })
         })
 
         const out = fs.createWriteStream(
@@ -88,11 +85,10 @@ export const load = (jumpFm: JumpFm) => {
                 dirFullPath: distDirFullPath
             })
 
-            jumpFm.statusBar.warn(
-                'q',
-                'q for copy: ' + path.basename(fullPath),
-                2000
-            )
+            jumpFm.statusBar.warn('q', {
+                txt: `q[${q.length}]`,
+                dataTitle: path.basename(fullPath)
+            }, 5000)
         })
 
         cpFileAndPop()
