@@ -13,6 +13,8 @@ interface cp {
 export const load = (jumpFm: JumpFm) => {
     let copying: boolean = false
     const q: cp[] = []
+    const msgCp = jumpFm.statusBar.msg('cp').setType('info')
+    const msgQ = jumpFm.statusBar.msg('q').setType('warn')
 
     const done = () => {
         jumpFm.statusBar.clear('q')
@@ -31,10 +33,8 @@ export const load = (jumpFm: JumpFm) => {
             length: fs.statSync(cp.fileFullPath).size,
             time: 200
         }, (prog) => {
-            jumpFm.statusBar.info('cp', {
-                txt: `cp ${prog.percentage.toFixed(0)}%`,
-                dataTitle: path.basename(cp.fileFullPath)
-            })
+            msgCp.setText(`cp ${prog.percentage.toFixed(0)}%`)
+                .setTooltip(path.basename(cp.fileFullPath))
         })
 
         const out = fs.createWriteStream(
@@ -85,18 +85,23 @@ export const load = (jumpFm: JumpFm) => {
                 dirFullPath: distDirFullPath
             })
 
-            jumpFm.statusBar.warn('q', {
-                txt: `q[${q.length}]`,
-                dataTitle: path.basename(fullPath)
-            }, 5000)
+            msgQ.setText(`q[${q.length}]`)
+                .setTooltip(path.basename(fullPath))
+                .setClearTimeout(5000)
         })
 
         cpFileAndPop()
     }
 
-    const selectedFiles = jumpFm.getActivePanel().getSelectedItemsPaths
-    const distDir = jumpFm.getPassivePanel().getPath
-    jumpFm.bindKeys('copy', ['f5'], () => {
-        cp(selectedFiles(), distDir())
-    }).filterMode()
+
+    jumpFm.bind('copy', ['f5'], () => {
+        const selectedFiles = jumpFm
+            .getPanelActive()
+            .getSelectedItems()
+            .map(item => item.path)
+
+        const distDir = jumpFm.getPanelPassive().getUrl().path
+
+        cp(selectedFiles, distDir)
+    })
 }
