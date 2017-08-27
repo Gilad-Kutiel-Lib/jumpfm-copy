@@ -1,19 +1,28 @@
 {
-    "name": "jumpfm-copy",
-    "version": "1.1.0",
-    "description": "",
-    "main": "index.js",
-    "scripts": {
-        "test": "echo \"Error: no test specified\" && exit 1"
-    },
-    "author": "",
-    "license": "ISC",
-    "dependencies": {
-        "fs-extra": "^4.0.1",
-        "path": "^0.12.7",
-        "progress-stream": "^2.0.0"
-    },
-    "devDependencies": {
-        "jumpfm-api": "^1.0.0"
-    }
+  "name": "jumpfm-copy",
+  "version": "1.1.0",
+  "description": "A [JumpFm](http://jumpfm.org/) plugin that implement copy queue.",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "author": "",
+  "license": "ISC",
+  "dependencies": {
+    "fs-extra": "^4.0.1",
+    "path": "^0.12.7",
+    "progress-stream": "^2.0.0"
+  },
+  "devDependencies": {
+    "jumpfm-api": "^1.0.0"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/JumpFm/jumpfm-copy.git"
+  },
+  "keywords": [],
+  "bugs": {
+    "url": "https://github.com/JumpFm/jumpfm-copy/issues"
+  },
+  "homepage": "https://github.com/JumpFm/jumpfm-copy#readme"
 }
